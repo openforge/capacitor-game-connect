@@ -1,0 +1,52 @@
+{
+  "name": "@openforge/capacitor-game-services",
+  "version": "1.1.2",
+  "description": "A native only plugin for googles play services library and apples game center library",
+  "main": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "OpenForge",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/core": "^4.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^4.0.0",
+    "@capacitor/cli": "^4.0.0",
+    "@capacitor/ios": "^4.0.0",
+    "@types/node": "^18.14.6",
+    "rimraf": "^4.3.1",
+    "typescript": "^4.9.5"
+  },
+  "files": [
+    "dist/",
+    "ios/",
+    "android/",
+    "OpenforgeCapacitorGameServices.podspec"
+  ],
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native"
+  ],
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openforge/capacitor-game-services"
+  },
+  "bugs": {
+    "url": "https://github.com/openforge/capacitor-game-services/issues"
+  }
+}
