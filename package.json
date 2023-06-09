@@ -1,6 +1,6 @@
 {
   "name": "@openforge/capacitor-game-connect",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A native only plugin for googles play services library and apples game center library",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
