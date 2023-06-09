@@ -1,5 +1,5 @@
 {
-  "name": "@openforge/capacitor-game-services",
+  "name": "@openforge/capacitor-game-connect",
   "version": "1.1.2",
   "description": "A native only plugin for googles play services library and apples game center library",
   "main": "dist/esm/index.js",
@@ -44,9 +44,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/openforge/capacitor-game-services"
+    "url": "git+https://github.com/openforge/capacitor-game-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-services/issues"
-  }
+    "url": "https://github.com/openforge/capacitor-game-connect/issues"
+  },
+  "homepage": "https://github.com/openforge/capacitor-game-connect#readme"
 }

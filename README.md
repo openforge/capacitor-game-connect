@@ -16,10 +16,10 @@
 </p>
 
 ## Installation
-Run `npm install @openforge/capacitor-game-services`
+Run `npm install @openforge/capacitor-game-connect`
 
 ## How To Use
-1. Import the plugin into your `ts` file as `import { GameServices } from '@openforge/capacitor-game-services';`
+1. Import the plugin into your `ts` file as `import { GameServices } from '@openforge/capacitor-game-connect';`
 
 ## Supported Methods
 
@@ -93,6 +93,6 @@ add(GameServices.class);
 Once all this steps are done, you just need to call the sign method of the plugin.
 
 ```ts
-import { GameServices } from '@openforge/capacitor-game-services';
+import { GameServices } from '@openforge/capacitor-game-connect';
 await GameServices.signIn();
 ```
