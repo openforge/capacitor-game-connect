@@ -1,10 +1,10 @@
 import { registerPlugin } from '@capacitor/core';
 
-import { GameServicesPlugin } from './definitions';
+import { GameConnectPlugin } from './definitions';
 
-const GameServices = registerPlugin<GameServicesPlugin>('GameServices', {
-  web: () => import('./web').then((m) => new m.GameServicesWeb()),
+const GameConnect = registerPlugin<GameConnectPlugin>('GameConnect', {
+  web: () => import('./web').then((m) => new m.GameConnectWeb()),
 });
 
 export * from './definitions';
-export { GameServices };
+export { GameConnect };

@@ -1,4 +1,4 @@
-export interface GameServicesPlugin {
+export interface GameConnectPlugin {
   /**
    * * Function to sign in a user
    *

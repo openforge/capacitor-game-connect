@@ -27,7 +27,7 @@
     "dist/",
     "ios/",
     "android/",
-    "OpenforgeCapacitorGameServices.podspec"
+    "OpenforgeCapacitorGameConnect.podspec"
   ],
   "keywords": [
     "capacitor",

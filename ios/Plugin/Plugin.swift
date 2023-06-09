@@ -4,8 +4,8 @@ import GameKit
 import AuthenticationServices
 
 @available(iOS 13.0, *)
-@objc(GameServices)
-public class GameServices: CAPPlugin, GKGameCenterControllerDelegate {
+@objc(GameConnect)
+public class GameConnect: CAPPlugin, GKGameCenterControllerDelegate {
     var call: CAPPluginCall?
 
     public func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
@@ -27,7 +27,7 @@ public class GameServices: CAPPlugin, GKGameCenterControllerDelegate {
             } else if gcAuthVC != nil {
                 self.bridge?.viewController?.present(gcAuthVC!, animated: true)
             } else {
-                call.reject("[GameServices] local player is not authenticated")
+                call.reject("[GameConnect] local player is not authenticated")
             }
         }
     }
@@ -54,7 +54,7 @@ public class GameServices: CAPPlugin, GKGameCenterControllerDelegate {
             return
         }
         
-        print("[GameServices] Showing Achievements")
+        print("[GameConnect] Showing Achievements")
         DispatchQueue.main.async {
             let achievementsViewController = GKGameCenterViewController()
             achievementsViewController.gameCenterDelegate = self
@@ -141,12 +141,12 @@ public class GameServices: CAPPlugin, GKGameCenterControllerDelegate {
         
         GKAchievement.resetAchievements(completionHandler: { error in
             guard error == nil else {
-                let errorMessage = "[GameServices] \(error?.localizedDescription ?? "Some Achievements Error")"
+                let errorMessage = "[GameConnect] \(error?.localizedDescription ?? "Some Achievements Error")"
                 print(errorMessage)
                 call.reject(errorMessage)
                 return
             }
-            print("[GameServices] Reset Achievement Called")
+            print("[GameConnect] Reset Achievement Called")
             call.resolve(result as PluginCallResultData)
         })
     }
@@ -168,7 +168,7 @@ public class GameServices: CAPPlugin, GKGameCenterControllerDelegate {
         let achievementID = call.getString("achievementID") ?? ""
         let progressComplete = percentComplete ?? 100.0
         
-        print("[GameServices] Setting Achievement Percentage \(progressComplete)")
+        print("[GameConnect] Setting Achievement Percentage \(progressComplete)")
                         
         let achievementToComplete = GKAchievement(identifier: achievementID)
         achievementToComplete.showsCompletionBanner = true

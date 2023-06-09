@@ -1,4 +1,4 @@
-package io.openforge.gameservices;
+package io.openforge.GameConnect;
 
 import android.content.Intent;
 import android.util.Log;
@@ -20,16 +20,16 @@ import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.tasks.Task;
 
 /**
- * GameServices plugin
+ * GameConnect plugin
  */
-@NativePlugin(requestCodes = { GameServices.RC_SIGN_IN, GameServices.RC_LEADERBOARD_UI,
-        GameServices.RC_ACHIEVEMENT_UI })
-public class GameServices extends Plugin {
+@NativePlugin(requestCodes = { GameConnect.RC_SIGN_IN, GameConnect.RC_LEADERBOARD_UI,
+        GameConnect.RC_ACHIEVEMENT_UI })
+public class GameConnect extends Plugin {
     static final int RC_SIGN_IN = 1;
     static final int RC_LEADERBOARD_UI = 9004;
     static final int RC_ACHIEVEMENT_UI = 9003;
 
-    private final String TAG = "GameServices";
+    private final String TAG = "GameConnect";
     private GoogleSignInOptions mGoogleSignInOptions;
 
     // MARK: Plugin Overrides

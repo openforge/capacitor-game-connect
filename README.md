@@ -19,7 +19,7 @@
 Run `npm install @openforge/capacitor-game-connect`
 
 ## How To Use
-1. Import the plugin into your `ts` file as `import { GameServices } from '@openforge/capacitor-game-connect';`
+1. Import the plugin into your `ts` file as `import { GameConnect } from '@openforge/capacitor-game-connect';`
 
 ## Supported Methods
 
@@ -84,15 +84,15 @@ implementation 'com.google.android.gms:play-services-games:19.0.0'
 - On the Main Activy add:
 
 ```android
-import io.openforge.gameservices.GameServices;
+import io.openforge.GameConnect.GameConnect;
 ...
-add(GameServices.class);
+add(GameConnect.class);
 ...
 ```
 
 Once all this steps are done, you just need to call the sign method of the plugin.
 
 ```ts
-import { GameServices } from '@openforge/capacitor-game-connect';
-await GameServices.signIn();
+import { GameConnect } from '@openforge/capacitor-game-connect';
+await GameConnect.signIn();
 ```
