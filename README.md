@@ -84,7 +84,7 @@ implementation 'com.google.android.gms:play-services-games:19.0.0'
 - On the Main Activy add:
 
 ```android
-import io.openforge.GameConnect.GameConnect;
+import io.openforge.gameConnect.GameConnect;
 ...
 add(GameConnect.class);
 ...

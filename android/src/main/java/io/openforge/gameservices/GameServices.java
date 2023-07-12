@@ -1,4 +1,4 @@
-package io.openforge.GameConnect;
+package io.openforge.gameservices;
 
 import android.content.Intent;
 import android.util.Log;
