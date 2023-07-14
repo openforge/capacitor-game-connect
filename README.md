@@ -62,7 +62,7 @@ npx cap sync
 
 ## Android
 
-In order to use the plugin, you need to make sure to include this meta-data tag in your AndroidManifest.xml file of your app:
+In order to use the plugin, you need to make sure to include this meta-data tag in your `AndroidManifest.xml` file of your app:
 
 ```xml
 <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/game_services_project_id"/>
@@ -131,7 +131,13 @@ Follow this guide to configure correctly your Google Play Console to be able to 
 
 ## Creating Achievements on Android
 
-Before use the `Achievement Methods` of the plugin, you need to setup your Achievements in your Google Play Console following the next steps:
+Before use the `Achievement Methods` of the plugin, you need to setup your Achievements and Leaderboards in your Google Play Console following the next steps:
+
+1. Navigate to your Google Play Console portal and select your app.
+2. On the sidebar, go to Grow section and then Setup and management
+3. Click Leaderboards and configure it by filling the fields. Then click save and publish your changes
+4. Click Achievements and configure it by filling the fields. Then click save and publish your changes
+5. Make sure all your changes are published by going to the Publishing section.
 
 ## Setup for iOS
 
