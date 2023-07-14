@@ -157,16 +157,17 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 
 <docgen-index>
 
-- [`signIn()`](#signin)
-- [`showLeaderboard(...)`](#showleaderboard)
-- [`submitScore(...)`](#submitscore)
-- [`showAchievements()`](#showachievements)
-- [`unlockAchievement(...)`](#unlockachievement)
-- [`incrementAchievementProgress(...)`](#incrementachievementprogress)
+* [`signIn()`](#signin)
+* [`showLeaderboard(...)`](#showleaderboard)
+* [`submitScore(...)`](#submitscore)
+* [`showAchievements()`](#showachievements)
+* [`unlockAchievement(...)`](#unlockachievement)
+* [`incrementAchievementProgress(...)`](#incrementachievementprogress)
 
 </docgen-index>
 
 <docgen-api>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
 ### signIn()
 
@@ -174,7 +175,7 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 signIn() => Promise<void>
 ```
 
-- Method to sign-in a user
+* Method to sign-in a user
 
 --------------------
 
@@ -185,7 +186,7 @@ signIn() => Promise<void>
 showLeaderboard(options: { leaderboardID: string; }) => Promise<void>
 ```
 
-- Method to display the Leaderboards
+* Method to display the Leaderboards
 
 | Param         | Type                                    |
 | ------------- | --------------------------------------- |
@@ -193,13 +194,14 @@ showLeaderboard(options: { leaderboardID: string; }) => Promise<void>
 
 --------------------
 
+
 ### submitScore(...)
 
 ```typescript
 submitScore(options: { leaderboardID: string; totalScoreAmount: number; }) => Promise<void>
 ```
 
-- Method to submit a score to the Leaderboards table
+* Method to submit a score to the Google Play Services SDK
 
 | Param         | Type                                                              |
 | ------------- | ----------------------------------------------------------------- |
@@ -207,15 +209,17 @@ submitScore(options: { leaderboardID: string; totalScoreAmount: number; }) => Pr
 
 --------------------
 
+
 ### showAchievements()
 
 ```typescript
 showAchievements() => Promise<void>
 ```
 
-- Method to display the Achievements view
+* Method to display the Achievements view
 
 --------------------
+
 
 ### unlockAchievement(...)
 
@@ -223,7 +227,7 @@ showAchievements() => Promise<void>
 unlockAchievement(options: { achievementID: string; }) => Promise<void>
 ```
 
-- Method to unlock an achievement
+* Method to unlock an achievement
 
 | Param         | Type                                    |
 | ------------- | --------------------------------------- |
@@ -231,13 +235,14 @@ unlockAchievement(options: { achievementID: string; }) => Promise<void>
 
 --------------------
 
+
 ### incrementAchievementProgress(...)
 
 ```typescript
 incrementAchievementProgress(options: { achievementID: string; pointsToIncrement: number; }) => Promise<void>
 ```
 
-- Method to increment the progress of an achievement
+* Method to increment the progress of an achievement
 
 | Param         | Type                                                               |
 | ------------- | ------------------------------------------------------------------ |

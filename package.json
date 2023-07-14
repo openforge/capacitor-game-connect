@@ -1,6 +1,6 @@
 {
   "name": "@openforge/capacitor-game-connect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
