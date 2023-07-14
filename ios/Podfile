@@ -1,5 +1,4 @@
 platform :ios, '13.0'
-require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
 
 def capacitor_pods
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -14,8 +13,4 @@ end
 
 target 'PluginTests' do
   capacitor_pods
-end
-
-post_install do |installer|
-  assertDeploymentTarget(installer)
 end

@@ -1,5 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="io.openforge.GameConnect.capacitorGameConnect">
-  <application>
-  </application> 
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 </manifest>

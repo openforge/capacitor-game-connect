@@ -1,4 +1,0 @@
-<resources>
-    <string name="my_string">Just a simple string</string>
-    <string name="default_web_client_id">REPLACED_AT_RUNTIME_BY_PLIST</string>
-</resources>
