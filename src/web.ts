@@ -1,52 +1,74 @@
 import { WebPlugin } from '@capacitor/core';
-import { GameConnectPlugin } from './definitions';
 
-export class GameConnectWeb extends WebPlugin implements GameConnectPlugin {
-  signIn(): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+import type { CapacitorGameConnectPlugin } from './definitions';
+
+export class CapacitorGameConnectWeb
+  extends WebPlugin
+  implements CapacitorGameConnectPlugin
+{
+  /**
+   * * Method to sign-in a user to Google Play Services
+   *
+   */
+  async signIn(): Promise<void> {
     return Promise.resolve();
   }
 
-  signOut(): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+  /**
+   * Method to display the Leaderboards view from Google Play Services SDK
+   *
+   * @param leaderboardID as string
+   */
+  async showLeaderboard(options: { leaderboardID: string }): Promise<void> {
+    console.info('showLeaderboard function has been called', options);
     return Promise.resolve();
   }
 
-  showLeaderboard(_: { leaderboardId: string }): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+  /**
+   * * Method to submit a score to the Google Play Services SDK
+   *
+   * @returns Promise
+   */
+  async submitScore(options: {
+    leaderboardID: string;
+    totalScoreAmount: number;
+  }): Promise<void> {
+    console.info('submitScore function has been called', options);
     return Promise.resolve();
   }
 
-  submitScore(_: { leaderboardId: string; score: number }): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+  /**
+   * * Method to display the Achievements view from Google Play SDK
+   *
+   * @returns Promise
+   */
+  async showAchievements(): Promise<void> {
     return Promise.resolve();
   }
 
-  showAchievements(): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+  /**
+   * * Method to unlock an achievement
+   *
+   * @returns  Promise
+   */
+  async unlockAchievement(options: { achievementID: string }): Promise<void> {
+    console.info('unlockAchievement function has been called', options);
     return Promise.resolve();
   }
 
-  unlockAchievement(_: { achievementID: string }): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
-    return Promise.resolve();
-  }
-
-  progressAchievement(_: {
+  /**
+   * * Method to increment the progress of an achievement
+   *
+   * @returns Promise
+   */
+  async incrementAchievementProgress(options: {
     achievementID: string;
-    percentComplete: number;
-  }): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
-    return Promise.resolve();
-  }
-
-  resetAllAchievementProgress(): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
-    return Promise.resolve();
-  }
-
-  revealAchievement(): Promise<any> {
-    console.warn('GameConnect does not have web implementation.');
+    pointsToIncrement: number;
+  }): Promise<void> {
+    console.info(
+      'incrementAchievementProgress function has been called',
+      options,
+    );
     return Promise.resolve();
   }
 }
