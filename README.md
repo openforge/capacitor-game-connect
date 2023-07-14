@@ -45,7 +45,7 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 - [Rock The Steps](https://github.com/openforge/rock-the-steps-app)
 - [OpenFarm](https://github.com/openforge/openfarm-puzzle-game)
 
-# capacitor-game-connect
+# @openforge/capacitor-game-connect
 
 A native capacitor plugin to connect to Game Services for iOS and Android
 
@@ -54,7 +54,7 @@ A native capacitor plugin to connect to Game Services for iOS and Android
 ## Install
 
 ```bash
-npm install capacitor-game-connect
+npm install @openforge/capacitor-game-connect
 npx cap sync
 ```
 
