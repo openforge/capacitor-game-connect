@@ -34,9 +34,13 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 
 ## Maintainers
 
+The lovely folks at OpenForge! Feel free to tag any of the following:
+
 | Maintainer | Github |
 | ---------- | :----: |
 | Ricardo   | @Ricardo385 |
+| Paulina | @paulpauldevelops |
+| Jedi | @jedihacks |
 
 ## Example Projects
 
