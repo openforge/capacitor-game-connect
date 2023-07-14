@@ -236,3 +236,8 @@ incrementAchievementProgress(options: { achievementID: string; pointsToIncrement
 --------------------
 
 </docgen-api>
+
+# Testing Limitations
+
+### Android
+In order to fully test the integrated functionality it is required to have a physical Android device. Trying to connect to these specific Google Play Services through Android Studio Emulator/Simulator will not work.
