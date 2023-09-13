@@ -1,6 +1,6 @@
 {
   "name": "@openforge/capacitor-game-connect",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -11,7 +11,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorGameConnect.podspec"
+    "OpenforgeCapacitorGameConnect.podspec"
   ],
   "author": "OpenForge LLC",
   "license": "MIT",
