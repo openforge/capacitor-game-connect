@@ -4,7 +4,10 @@ export interface CapacitorGameConnectPlugin {
    *
    *
    */
-  signIn(): Promise<void>;
+  signIn(): Promise<{
+    player_name: string;
+    player_id: string;
+  }>;
 
   /**
    * * Method to display the Leaderboards
