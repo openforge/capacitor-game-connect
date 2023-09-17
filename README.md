@@ -172,10 +172,12 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 ### signIn()
 
 ```typescript
-signIn() => Promise<void>
+signIn() => Promise<{ player_name: string; player_id: string; }>
 ```
 
 * Method to sign-in a user
+
+**Returns:** <code>Promise&lt;{ player_name: string; player_id: string; }&gt;</code>
 
 --------------------
 

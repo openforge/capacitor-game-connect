@@ -5,7 +5,7 @@ export declare class CapacitorGameConnectWeb extends WebPlugin implements Capaci
      * * Method to sign-in a user to Google Play Services
      *
      */
-    signIn(): Promise<void>;
+    signIn(): Promise<any>;
     /**
      * Method to display the Leaderboards view from Google Play Services SDK
      *

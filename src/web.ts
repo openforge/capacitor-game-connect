@@ -10,7 +10,7 @@ export class CapacitorGameConnectWeb
    * * Method to sign-in a user to Google Play Services
    *
    */
-  async signIn(): Promise<void> {
+  async signIn(): Promise<any> {
     return Promise.resolve();
   }
 
