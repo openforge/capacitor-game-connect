@@ -1,11 +1,16 @@
 import { WebPlugin } from '@capacitor/core';
 import type { CapacitorGameConnectPlugin } from './definitions';
+export interface User {
+    player_id: string;
+    player_name: string;
+}
 export declare class CapacitorGameConnectWeb extends WebPlugin implements CapacitorGameConnectPlugin {
     /**
      * * Method to sign-in a user to Google Play Services
-     *
+     * * TODO: migrate interface to a different file
+     * * Add web support for signIn
      */
-    signIn(): Promise<void>;
+    signIn(): Promise<User>;
     /**
      * Method to display the Leaderboards view from Google Play Services SDK
      *
