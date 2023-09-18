@@ -7,9 +7,9 @@
     "methods": [
       {
         "name": "signIn",
-        "signature": "() => Promise<void>",
+        "signature": "() => Promise<{ player_name: string; player_id: string; }>",
         "parameters": [],
-        "returns": "Promise<void>",
+        "returns": "Promise<{ player_name: string; player_id: string; }>",
         "tags": [],
         "docs": "* Method to sign-in a user",
         "complexTypes": [],
