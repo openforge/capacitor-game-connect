@@ -22,31 +22,44 @@ public class CapacitorGameConnect {
      * * Method to sign-in a user to Google Play Services
      *
      * @param call as PluginCall
+     * @param resultCallback as SignInCallback
      */
-    public void signIn(PluginCall call) {
+    public void signIn(PluginCall call, final SignInCallback resultCallback) {
         Log.i(TAG, "SignIn method called");
         GamesSignInClient gamesSignInClient = PlayGames.getGamesSignInClient(this.activity);
 
         gamesSignInClient
-                .isAuthenticated()
-                .addOnCompleteListener(
-                        isAuthenticatedTask -> {
-                            boolean isAuthenticated = (isAuthenticatedTask.isSuccessful() && isAuthenticatedTask.getResult().isAuthenticated());
+            .isAuthenticated()
+            .addOnCompleteListener(
+                isAuthenticatedTask -> {
+                    boolean isAuthenticated = (isAuthenticatedTask.isSuccessful() && isAuthenticatedTask.getResult().isAuthenticated());
 
-                            if (isAuthenticated) {
-                                Log.i(TAG, "User is already authenticated");
-                                call.resolve();
-                            } else {
-                                gamesSignInClient
-                                        .signIn()
-                                        .addOnCompleteListener(
-                                                data -> {
-                                                    Log.i(TAG, "Sign-in completed successful");
-                                                }
-                                        );
-                            }
-                        }
-                );
+                    if (isAuthenticated) {
+                        Log.i(TAG, "User is already authenticated");
+                        resultCallback.success();
+                    } else {
+                        gamesSignInClient
+                            .signIn()
+                            .addOnCompleteListener(
+                                data -> {
+                                    Log.i(TAG, "Sign-in completed successful");
+                                    resultCallback.success();
+                                }
+                            ).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
+                    }
+                }
+            ).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
+    }
+
+    /**
+     * * Method to fetch the logged in Player
+     *
+     * @param resultCallback as PlayerResultCallback
+     */
+    public void fetchUserInformation(final PlayerResultCallback resultCallback) {
+        PlayGames.getPlayersClient(this.activity).getCurrentPlayer().addOnSuccessListener(player -> {
+            resultCallback.success(player);
+        }).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
     }
 
     /**
@@ -59,16 +72,16 @@ public class CapacitorGameConnect {
         Log.i(TAG, "showLeaderboard has been called");
         var leaderboardID = call.getString("leaderboardID");
         PlayGames
-                .getLeaderboardsClient(this.activity)
-                .getLeaderboardIntent(leaderboardID)
-                .addOnSuccessListener(
-                        new OnSuccessListener<Intent>() {
-                            @Override
-                            public void onSuccess(Intent intent) {
-                                startActivityIntent.launch(intent);
-                            }
-                        }
-                );
+            .getLeaderboardsClient(this.activity)
+            .getLeaderboardIntent(leaderboardID)
+            .addOnSuccessListener(
+                new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityIntent.launch(intent);
+                    }
+                }
+            );
     }
 
     /**
@@ -91,16 +104,16 @@ public class CapacitorGameConnect {
     public void showAchievements(ActivityResultLauncher<Intent> startActivityIntent) {
         Log.i(TAG, "showAchievements has been called");
         PlayGames
-                .getAchievementsClient(this.activity)
-                .getAchievementsIntent()
-                .addOnSuccessListener(
-                        new OnSuccessListener<Intent>() {
-                            @Override
-                            public void onSuccess(Intent intent) {
-                                startActivityIntent.launch(intent);
-                            }
-                        }
-                );
+            .getAchievementsClient(this.activity)
+            .getAchievementsIntent()
+            .addOnSuccessListener(
+                new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityIntent.launch(intent);
+                    }
+                }
+            );
     }
 
     /**
