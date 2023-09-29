@@ -6,6 +6,24 @@ import Capacitor
     public func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true);
     }
+
+    @objc func signIn(_ call: CAPPluginCall,  _ viewController: UIViewController) {
+        let localPlayer = GKLocalPlayer.local
+        
+        localPlayer.authenticateHandler = { gcAuthVC, error in
+            if localPlayer.isAuthenticated {
+                let result = [
+                    "player_name": localPlayer.displayName,
+                    "player_id": localPlayer.gamePlayerID
+                ]
+                call.resolve(result)
+            } else if gcAuthVC != nil {
+                viewController.present(gcAuthVC!, animated: true)
+            } else {
+                call.reject("[GameServices] local player is not authenticated")
+            }
+        }
+    }
     
     @objc func showLeaderboard(_ call: CAPPluginCall, _ viewController: UIViewController) {
         let leaderboardID = String(call.getString("leaderboardID") ?? "") // Property to get the leaderboard ID
