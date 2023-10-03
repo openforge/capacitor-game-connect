@@ -1,11 +1,8 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type { CapacitorGameConnectPlugin } from './definitions';
-
-export interface User {
-  player_id: string;
-  player_name: string;
-}
+import type { PlayerScore } from './interfaces/player-score.interface';
+import type { User } from './interfaces/user.interface';
 
 export class CapacitorGameConnectWeb
   extends WebPlugin
@@ -76,5 +73,18 @@ export class CapacitorGameConnectWeb
       options,
     );
     return Promise.resolve();
+  }
+
+  /**
+   * * Function to get the total player score from a specific leaderboard
+   *
+   * @param options { leaderboardID: string }
+   * @returns Promise<PlayerScore>
+   */
+  async getUserTotalScore(options: {
+    leaderboardID: string;
+  }): Promise<PlayerScore> {
+    console.info('getUserTotalScore function has been called', options);
+    return Promise.resolve({} as PlayerScore);
   }
 }

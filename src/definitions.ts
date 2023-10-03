@@ -1,3 +1,5 @@
+import type { PlayerScore } from './interfaces/player-score.interface';
+
 export interface CapacitorGameConnectPlugin {
   /**
    * * Method to sign-in a user
@@ -44,4 +46,11 @@ export interface CapacitorGameConnectPlugin {
     achievementID: string;
     pointsToIncrement: number;
   }): Promise<void>;
+
+  /**
+   * * Method to get total player score from a leaderboard
+   *
+   * @param options { leaderboardID: string }
+   */
+  getUserTotalScore(options: { leaderboardID: string }): Promise<PlayerScore>;
 }
