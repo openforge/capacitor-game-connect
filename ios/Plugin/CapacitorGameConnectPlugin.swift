@@ -39,4 +39,8 @@ public class CapacitorGameConnectPlugin: CAPPlugin {
         implementation.incrementAchievementProgress(call)
         call.resolve()
     }
+    
+    @objc func getUserTotalScore(_ call: CAPPluginCall) {
+        implementation.getUserTotalScore(call)
+    }
 }

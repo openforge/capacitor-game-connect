@@ -98,4 +98,9 @@ public class CapacitorGameConnectPlugin extends Plugin {
         implementation.incrementAchievementProgress(call);
         call.resolve();
     }
+
+    @PluginMethod
+    public void getUserTotalScore(PluginCall call) {
+        implementation.getUserTotalScore(call);
+    }
 }

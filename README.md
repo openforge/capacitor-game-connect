@@ -163,6 +163,8 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 * [`showAchievements()`](#showachievements)
 * [`unlockAchievement(...)`](#unlockachievement)
 * [`incrementAchievementProgress(...)`](#incrementachievementprogress)
+* [`getUserTotalScore(...)`](#getusertotalscore)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -251,6 +253,33 @@ incrementAchievementProgress(options: { achievementID: string; pointsToIncrement
 | **`options`** | <code>{ achievementID: string; pointsToIncrement: number; }</code> |
 
 --------------------
+
+
+### getUserTotalScore(...)
+
+```typescript
+getUserTotalScore(options: { leaderboardID: string; }) => Promise<PlayerScore>
+```
+
+* Method to get total player score from a leaderboard
+
+| Param         | Type                                    | Description |
+| ------------- | --------------------------------------- | ----------- |
+| **`options`** | <code>{ leaderboardID: string; }</code> | : string }  |
+
+**Returns:** <code>Promise&lt;<a href="#playerscore">PlayerScore</a>&gt;</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### PlayerScore
+
+| Prop               | Type                |
+| ------------------ | ------------------- |
+| **`player_score`** | <code>number</code> |
 
 </docgen-api>
 

@@ -3,10 +3,16 @@ package com.openforge.capacitorgameconnect;
 import android.content.Intent;
 import android.util.Log;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
+import com.google.android.gms.games.AnnotatedData;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
+import com.google.android.gms.games.leaderboard.LeaderboardScore;
+import com.google.android.gms.games.leaderboard.LeaderboardVariant;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class CapacitorGameConnect {
@@ -45,10 +51,12 @@ public class CapacitorGameConnect {
                                     Log.i(TAG, "Sign-in completed successful");
                                     resultCallback.success();
                                 }
-                            ).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
+                            )
+                            .addOnFailureListener(e -> resultCallback.error(e.getMessage()));
                     }
                 }
-            ).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
+            )
+            .addOnFailureListener(e -> resultCallback.error(e.getMessage()));
     }
 
     /**
@@ -57,9 +65,15 @@ public class CapacitorGameConnect {
      * @param resultCallback as PlayerResultCallback
      */
     public void fetchUserInformation(final PlayerResultCallback resultCallback) {
-        PlayGames.getPlayersClient(this.activity).getCurrentPlayer().addOnSuccessListener(player -> {
-            resultCallback.success(player);
-        }).addOnFailureListener(e -> resultCallback.error(e.getMessage()));
+        PlayGames
+            .getPlayersClient(this.activity)
+            .getCurrentPlayer()
+            .addOnSuccessListener(
+                player -> {
+                    resultCallback.success(player);
+                }
+            )
+            .addOnFailureListener(e -> resultCallback.error(e.getMessage()));
     }
 
     /**
@@ -135,5 +149,39 @@ public class CapacitorGameConnect {
         var achievementID = call.getString("achievementID");
         var pointsToIncrement = call.getInt("pointsToIncrement");
         PlayGames.getAchievementsClient(this.activity).increment(achievementID, pointsToIncrement);
+    }
+
+    /**
+     * * Method to get the total player score from a leaderboard
+     *
+     */
+    public void getUserTotalScore(PluginCall call) {
+        Log.i(TAG, "getUserTotalScore has been called");
+        var leaderboardID = call.getString("leaderboardID");
+        var leaderboardScore = PlayGames
+            .getLeaderboardsClient(this.activity)
+            .loadCurrentPlayerLeaderboardScore(leaderboardID, LeaderboardVariant.TIME_SPAN_ALL_TIME, LeaderboardVariant.COLLECTION_PUBLIC);
+        leaderboardScore
+            .addOnSuccessListener(
+                new OnSuccessListener<AnnotatedData<LeaderboardScore>>() {
+                    @Override
+                    public void onSuccess(AnnotatedData<LeaderboardScore> leaderboardScoreAnnotatedData) {
+                        if (leaderboardScore != null) {
+                            long totalScore = leaderboardScore.getResult().get().getRawScore();
+                            JSObject result = new JSObject();
+                            result.put("player_score", totalScore);
+                            call.resolve(result);
+                        }
+                    }
+                }
+            )
+            .addOnFailureListener(
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        call.reject("Error getting player score" + e.getMessage());
+                    }
+                }
+            );
     }
 }
