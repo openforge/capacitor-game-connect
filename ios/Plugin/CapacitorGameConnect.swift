@@ -6,13 +6,12 @@ import Capacitor
     public func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true);
     }
-    
+
     @objc func signIn(_ call: CAPPluginCall,  _ viewController: UIViewController) {
         let localPlayer = GKLocalPlayer.local
         
         localPlayer.authenticateHandler = { gcAuthVC, error in
             if localPlayer.isAuthenticated {
-                print("User is authenticated to Game Center!")
                 let result = [
                     "player_name": localPlayer.displayName,
                     "player_id": localPlayer.gamePlayerID

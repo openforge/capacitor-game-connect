@@ -1,17 +1,18 @@
 import Foundation
 import Capacitor
+import GameKit
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
  * here: https://capacitorjs.com/docs/plugins/ios
  */
+
 @objc(CapacitorGameConnectPlugin)
 public class CapacitorGameConnectPlugin: CAPPlugin {
     private let implementation = CapacitorGameConnect()
 
     @objc func signIn(_ call: CAPPluginCall) {
         implementation.signIn(call, (self.bridge?.viewController)!)
-        call.resolve()
     }
     
     @objc func showLeaderboard(_ call: CAPPluginCall) {
