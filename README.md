@@ -49,10 +49,6 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 - [Rock The Steps](https://github.com/openforge/rock-the-steps-app)
 - [OpenFarm](https://github.com/openforge/openfarm-puzzle-game)
 
-# @openforge/capacitor-game-connect
-
-A native capacitor plugin to connect to Game Services for iOS and Android
-
 # Getting Started
 
 ## Install
@@ -286,4 +282,5 @@ getUserTotalScore(options: { leaderboardID: string; }) => Promise<PlayerScore>
 # Testing Limitations
 
 ### Android
-In order to fully test the integrated functionality it is required to have a physical Android device. Trying to connect to these specific Google Play Services through Android Studio Emulator/Simulator will not work.
+In order to test the functionality, you must have a physical Android device. Trying to connect to Google Play Services through Android Studio Emulator/Simulator will not work.
+Note: Certain functionality may require having to sign your APK when building to your device.
