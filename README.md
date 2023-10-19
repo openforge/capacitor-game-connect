@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/openforge/main-website/blob/master/src/assets/logo-openforge.png?raw=true"/>
+  <img src="https://s3.amazonaws.com/tw-inlineimages/467579/0/0/ff47c124a5732bf549b43532a7ac19e1.png"/>
 </p>
 <p align="center">
   <a href="http://www.openforge.io/">Official Website</a> |
@@ -21,8 +21,8 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 | Capacitor v5   | 🚧       |
 | Capacitor v4   | ✅       |
 | Capacitor v3   | ✅       |
-| Capacitor v2   | 🚧       |
-| Capacitor v1   | 🚧       |
+| Capacitor v2   | ❌       |
+| Capacitor v1   | ❌       |
 
 ✅ - Supported
 🚧 - WIP Support
