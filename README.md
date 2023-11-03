@@ -1,19 +1,15 @@
 <p align="center">
-  <img src="https://github.com/openforge/main-website/blob/master/src/assets/logo-openforge.png?raw=true"/>
+  <img src="https://s3.amazonaws.com/tw-inlineimages/467579/0/0/ff47c124a5732bf549b43532a7ac19e1.png"/>
 </p>
 <p align="center">
   <a href="http://www.openforge.io/">Official Website</a> |
   <a href="http://www.openforge.io/opportunities">Opportunities</a> |
-  <a href="https://www.facebook.com/openforgemobile/">Facebook</a>
+  <a href="https://openforge.io/mobile-academy/">Mobile Academy</a>
 </p>
 
 <h3 align="center">
   Leading By Example.
 </h3>
-
-<p align="center">
-  Working with the latest technologies, designing the best products, and sharing our knowledge with the world wide community.
-</p>
 
 # Introduction
 Capacitor plugin for connecting and using services by Apple Game Center and Google Play Game Services. Features included are access to Sign-In, Leaderboard, and Achievements.
@@ -25,8 +21,8 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 | Capacitor v5   | 🚧       |
 | Capacitor v4   | ✅       |
 | Capacitor v3   | ✅       |
-| Capacitor v2   | 🚧       |
-| Capacitor v1   | 🚧       |
+| Capacitor v2   | ❌       |
+| Capacitor v1   | ❌       |
 
 ✅ - Supported
 🚧 - WIP Support
@@ -48,10 +44,6 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 
 - [Rock The Steps](https://github.com/openforge/rock-the-steps-app)
 - [OpenFarm](https://github.com/openforge/openfarm-puzzle-game)
-
-# @openforge/capacitor-game-connect
-
-A native capacitor plugin to connect to Game Services for iOS and Android
 
 # Getting Started
 
@@ -163,6 +155,8 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 * [`showAchievements()`](#showachievements)
 * [`unlockAchievement(...)`](#unlockachievement)
 * [`incrementAchievementProgress(...)`](#incrementachievementprogress)
+* [`getUserTotalScore(...)`](#getusertotalscore)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -252,9 +246,37 @@ incrementAchievementProgress(options: { achievementID: string; pointsToIncrement
 
 --------------------
 
+
+### getUserTotalScore(...)
+
+```typescript
+getUserTotalScore(options: { leaderboardID: string; }) => Promise<PlayerScore>
+```
+
+* Method to get total player score from a leaderboard
+
+| Param         | Type                                    | Description |
+| ------------- | --------------------------------------- | ----------- |
+| **`options`** | <code>{ leaderboardID: string; }</code> | : string }  |
+
+**Returns:** <code>Promise&lt;<a href="#playerscore">PlayerScore</a>&gt;</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### PlayerScore
+
+| Prop               | Type                |
+| ------------------ | ------------------- |
+| **`player_score`** | <code>number</code> |
+
 </docgen-api>
 
 # Testing Limitations
 
 ### Android
-In order to fully test the integrated functionality it is required to have a physical Android device. Trying to connect to these specific Google Play Services through Android Studio Emulator/Simulator will not work.
+In order to test the functionality, you must have a physical Android device. Trying to connect to Google Play Services through Android Studio Emulator/Simulator will not work.
+Note: Certain functionality may require having to sign your APK when building to your device.

@@ -10,4 +10,5 @@ CAP_PLUGIN(CapacitorGameConnectPlugin, "CapacitorGameConnect",
            CAP_PLUGIN_METHOD(submitScore, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(unlockAchievement, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(incrementAchievementProgress, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getUserTotalScore, CAPPluginReturnPromise);
 )

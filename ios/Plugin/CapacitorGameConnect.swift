@@ -6,13 +6,12 @@ import Capacitor
     public func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true);
     }
-    
+
     @objc func signIn(_ call: CAPPluginCall,  _ viewController: UIViewController) {
         let localPlayer = GKLocalPlayer.local
         
         localPlayer.authenticateHandler = { gcAuthVC, error in
             if localPlayer.isAuthenticated {
-                print("User is authenticated to Game Center!")
                 let result = [
                     "player_name": localPlayer.displayName,
                     "player_id": localPlayer.gamePlayerID
@@ -126,6 +125,36 @@ import Capacitor
                 return
             }
             call.resolve(result as PluginCallResultData)
+        }
+    }
+    
+    @objc func getUserTotalScore(_ call: CAPPluginCall) {
+        guard GKLocalPlayer.local.isAuthenticated else {
+            print("Player is not authenticated")
+            call.reject("Player is not authenticated")
+            return
+        }
+        
+        let leaderboardID = String(call.getString("leaderboardID") ?? "") // * Property to get the leaderboard ID
+        let leaderboard = GKLeaderboard() // * LeaderBoard functions
+        leaderboard.identifier = leaderboardID // * LeaderBoard we are going to use for
+        leaderboard.playerScope = .global // * Section to use
+        leaderboard.timeScope = .allTime // * Time to search for
+        
+        leaderboard.loadScores { (scores, error) in
+            if let error = error {
+                call.reject("Error loading leaderboard score: \(error.localizedDescription)")
+            } else if let scores = scores {
+                for score in scores {
+                    if score.player.gamePlayerID == GKLocalPlayer.local.gamePlayerID {
+                        let result = [
+                            "player_score": score.value
+                        ]
+                        call.resolve(result)
+                        break
+                    }
+                }
+            }
         }
     }
 }
