@@ -1,19 +1,15 @@
 <p align="center">
-  <img src="https://github.com/openforge/main-website/blob/master/src/assets/logo-openforge.png?raw=true"/>
+  <img src="https://s3.amazonaws.com/tw-inlineimages/467579/0/0/ff47c124a5732bf549b43532a7ac19e1.png"/>
 </p>
 <p align="center">
   <a href="http://www.openforge.io/">Official Website</a> |
   <a href="http://www.openforge.io/opportunities">Opportunities</a> |
-  <a href="https://www.facebook.com/openforgemobile/">Facebook</a>
+  <a href="https://openforge.io/mobile-academy/">Mobile Academy</a>
 </p>
 
 <h3 align="center">
   Leading By Example.
 </h3>
-
-<p align="center">
-  Working with the latest technologies, designing the best products, and sharing our knowledge with the world wide community.
-</p>
 
 # Introduction
 Capacitor plugin for connecting and using services by Apple Game Center and Google Play Game Services. Features included are access to Sign-In, Leaderboard, and Achievements.
@@ -25,8 +21,8 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 | Capacitor v5   | 🚧       |
 | Capacitor v4   | ✅       |
 | Capacitor v3   | ✅       |
-| Capacitor v2   | 🚧       |
-| Capacitor v1   | 🚧       |
+| Capacitor v2   | ❌       |
+| Capacitor v1   | ❌       |
 
 ✅ - Supported
 🚧 - WIP Support
