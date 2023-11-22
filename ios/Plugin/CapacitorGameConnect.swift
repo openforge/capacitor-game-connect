@@ -142,18 +142,26 @@ import Capacitor
         leaderboard.timeScope = .allTime // * Time to search for
         
         leaderboard.loadScores { (scores, error) in
-            if let error = error {
-                call.reject("Error loading leaderboard score: \(error.localizedDescription)")
-            } else if let scores = scores {
-                for score in scores {
-                    if score.player.gamePlayerID == GKLocalPlayer.local.gamePlayerID {
-                        let result = [
-                            "player_score": score.value
-                        ]
-                        call.resolve(result)
-                        break
+            let hasScore = scores ?? nil
+            if hasScore != nil {
+                if let error = error {
+                    call.reject("Error loading leaderboard score: \(error.localizedDescription)")
+                } else if let scores = scores {
+                    for score in scores {
+                        if score.player.gamePlayerID == GKLocalPlayer.local.gamePlayerID {
+                            let result = [
+                                "player_score": score.value
+                            ]
+                            call.resolve(result)
+                            break
+                        }
                     }
                 }
+            } else {
+                let result = [
+                    "player_score": 0
+                ]
+                call.resolve(result as PluginCallResultData)
             }
         }
     }
