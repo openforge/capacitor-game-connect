@@ -137,6 +137,7 @@ import Capacitor
         
         let leaderboardID = String(call.getString("leaderboardID") ?? "") // * Property to get the leaderboard ID
         let leaderboard = GKLeaderboard() // * LeaderBoard functions
+        var userTotalScore = 0 // * Property to store user total score
         leaderboard.identifier = leaderboardID // * LeaderBoard we are going to use for
         leaderboard.playerScope = .global // * Section to use
         leaderboard.timeScope = .allTime // * Time to search for
@@ -149,20 +150,17 @@ import Capacitor
                 } else if let scores = scores {
                     for score in scores {
                         if score.player.gamePlayerID == GKLocalPlayer.local.gamePlayerID {
-                            let result = [
-                                "player_score": score.value
-                            ]
-                            call.resolve(result)
-                            break
+                            userTotalScore = Int(score.value)
                         }
                     }
                 }
             } else {
-                let result = [
-                    "player_score": 0
-                ]
-                call.resolve(result as PluginCallResultData)
+                userTotalScore = 0
             }
+            let result = [
+                "player_score": userTotalScore
+            ]
+            call.resolve(result as PluginCallResultData)
         }
     }
 }
