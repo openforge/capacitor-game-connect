@@ -167,9 +167,12 @@ public class CapacitorGameConnect {
                     @Override
                     public void onSuccess(AnnotatedData<LeaderboardScore> leaderboardScoreAnnotatedData) {
                         if (leaderboardScore != null) {
-                            long totalScore = leaderboardScore.getResult().get().getRawScore();
+                            long userTotalScore = 0;
+                            if (leaderboardScore.getResult().get() != null) {
+                                userTotalScore = leaderboardScore.getResult().get().getRawScore();
+                            }
                             JSObject result = new JSObject();
-                            result.put("player_score", totalScore);
+                            result.put("player_score", userTotalScore);
                             call.resolve(result);
                         }
                     }
