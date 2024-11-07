@@ -17,6 +17,14 @@ xcuserdata
 *.apk
 *.ap_
 
+# IDE and Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+
 # Files for the ART/Dalvik VM
 *.dex
 
