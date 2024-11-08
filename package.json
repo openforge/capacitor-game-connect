@@ -1,5 +1,5 @@
 {
-  "name": "@openforge/capacitor-game-connect",
+  "name": "@boengli/capacitor-game-connect",
   "version": "6.0.0",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
