@@ -1,0 +1,1 @@
+{"version":3,"file":"user.interface.js","sourceRoot":"","sources":["../../../src/interfaces/user.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface User {\n  player_id: string;\n  player_name: string;\n}\n"]}
