@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openforge/capacitor-game-connect.git.git"
+    "url": "git+https://github.com/boengli/capacitor-game-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-connect.git/issues"
+    "url": "https://github.com/boengli/capacitor-game-connect/issues"
   },
   "keywords": [
     "capacitor",
