@@ -32,6 +32,9 @@
     "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
     "eslint": "eslint . --ext ts",
@@ -44,19 +47,22 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^7.0.0",
-    "@capacitor/core": "^7.0.0",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
     "@capacitor/docgen": "^0.3.0",
-    "@capacitor/ios": "^7.0.0",
+    "@capacitor/ios": "^7.4.3",
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^4.0.0",
     "@ionic/swiftlint-config": "^2.0.0",
-    "eslint": "^8.57.0",
+    "@types/jest": "^30.0.0",
+    "eslint": "^9.36.0",
+    "jest": "^30.2.0",
     "prettier": "^3.4.2",
     "prettier-plugin-java": "^2.6.6",
     "rimraf": "^6.0.1",
     "rollup": "^4.30.1",
-    "swiftlint": "^1.0.1",
+    "swiftlint": "^2.0.0",
+    "ts-jest": "^29.4.4",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
@@ -74,5 +80,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "@capacitor/cli": "^7.4.3"
   }
 }

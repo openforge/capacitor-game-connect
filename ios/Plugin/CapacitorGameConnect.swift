@@ -7,20 +7,27 @@ import Capacitor
         gameCenterViewController.dismiss(animated: true);
     }
 
-    @objc func signIn(_ call: CAPPluginCall,  _ viewController: UIViewController) {
+    @objc func signIn(_ call: CAPPluginCall, _ viewController: UIViewController) {
         let localPlayer = GKLocalPlayer.local
-        
-        localPlayer.authenticateHandler = { gcAuthVC, error in
-            if localPlayer.isAuthenticated {
-                let result = [
-                    "player_name": localPlayer.displayName,
-                    "player_id": localPlayer.gamePlayerID
-                ]
-                call.resolve(result)
-            } else if gcAuthVC != nil {
-                viewController.present(gcAuthVC!, animated: true)
-            } else {
-                call.reject("[GameServices] local player is not authenticated")
+
+        localPlayer.authenticateHandler = { [weak self] gcAuthVC, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    call.reject("Authentication failed: \(error.localizedDescription)")
+                    return
+                }
+
+                if localPlayer.isAuthenticated {
+                    let result = [
+                        "player_name": localPlayer.displayName ?? "",
+                        "player_id": localPlayer.gamePlayerID ?? ""
+                    ]
+                    call.resolve(result)
+                } else if let gcAuthVC = gcAuthVC {
+                    viewController.present(gcAuthVC, animated: true)
+                } else {
+                    call.reject("[GameServices] local player is not authenticated")
+                }
             }
         }
     }
@@ -76,7 +83,7 @@ import Capacitor
                 call.reject("Score submission failed, try again.")
             } else {
                 let result = [
-                    "type": "sucess",
+                    "type": "success",
                     "message": "Score has been submitted successfully"
                 ]
                 // Score submitted successfully

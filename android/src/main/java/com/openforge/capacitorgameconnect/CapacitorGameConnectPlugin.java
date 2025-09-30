@@ -2,8 +2,6 @@ package com.openforge.capacitorgameconnect;
 
 import android.content.Intent;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
@@ -28,11 +26,8 @@ public class CapacitorGameConnectPlugin extends Plugin {
                 getActivity()
                         .registerForActivityResult(
                                 new ActivityResultContracts.StartActivityForResult(),
-                                new ActivityResultCallback<ActivityResult>() {
-                                    @Override
-                                    public void onActivityResult(ActivityResult result) {
-                                        // Add same code that you want to add in onActivityResult method
-                                    }
+                                result -> {
+                                    // Handle activity result if needed
                                 }
                         );
         implementation = new CapacitorGameConnect(getActivity());

@@ -77,8 +77,6 @@ var capacitorCapacitorGameConnect = (function (exports, core) {
 
     exports.CapacitorGameConnect = CapacitorGameConnect;
 
-    Object.defineProperty(exports, '__esModule', { value: true });
-
     return exports;
 
 })({}, capacitorExports);
