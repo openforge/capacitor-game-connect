@@ -1,0 +1,144 @@
+{
+  "api": {
+    "name": "CapacitorGameConnectPlugin",
+    "slug": "capacitorgameconnectplugin",
+    "docs": "",
+    "tags": [],
+    "methods": [
+      {
+        "name": "signIn",
+        "signature": "() => Promise<{ player_name: string; player_id: string; }>",
+        "parameters": [],
+        "returns": "Promise<{ player_name: string; player_id: string; }>",
+        "tags": [],
+        "docs": "* Method to sign-in a user",
+        "complexTypes": [],
+        "slug": "signin"
+      },
+      {
+        "name": "showLeaderboard",
+        "signature": "(options: { leaderboardID: string; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ leaderboardID: string; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "leaderboardID as string"
+          }
+        ],
+        "docs": "* Method to display the Leaderboards",
+        "complexTypes": [],
+        "slug": "showleaderboard"
+      },
+      {
+        "name": "submitScore",
+        "signature": "(options: { leaderboardID: string; totalScoreAmount: number; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ leaderboardID: string; totalScoreAmount: number; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "* Method to submit a score to the Google Play Services SDK",
+        "complexTypes": [],
+        "slug": "submitscore"
+      },
+      {
+        "name": "showAchievements",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "* Method to display the Achievements view",
+        "complexTypes": [],
+        "slug": "showachievements"
+      },
+      {
+        "name": "unlockAchievement",
+        "signature": "(options: { achievementID: string; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ achievementID: string; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "* Method to unlock an achievement",
+        "complexTypes": [],
+        "slug": "unlockachievement"
+      },
+      {
+        "name": "incrementAchievementProgress",
+        "signature": "(options: { achievementID: string; pointsToIncrement: number; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ achievementID: string; pointsToIncrement: number; }"
+          }
+        ],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "* Method to increment the progress of an achievement",
+        "complexTypes": [],
+        "slug": "incrementachievementprogress"
+      },
+      {
+        "name": "getUserTotalScore",
+        "signature": "(options: { leaderboardID: string; }) => Promise<PlayerScore>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": ": string }",
+            "type": "{ leaderboardID: string; }"
+          }
+        ],
+        "returns": "Promise<PlayerScore>",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options : string }"
+          }
+        ],
+        "docs": "* Method to get total player score from a leaderboard",
+        "complexTypes": [
+          "PlayerScore"
+        ],
+        "slug": "getusertotalscore"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "PlayerScore",
+      "slug": "playerscore",
+      "docs": "",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "player_score",
+          "tags": [],
+          "docs": "",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [],
+  "pluginConfigs": []
+}

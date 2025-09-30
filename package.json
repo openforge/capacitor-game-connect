@@ -17,10 +17,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openforge/capacitor-game-connect.git.git"
+    "url": "git+https://github.com/boengli/capacitor-game-connect.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-connect.git/issues"
+    "url": "https://github.com/boengli/capacitor-game-connect/issues"
   },
   "keywords": [
     "capacitor",
@@ -56,11 +56,11 @@
     "prettier-plugin-java": "^2.6.6",
     "rimraf": "^6.0.1",
     "rollup": "^4.30.1",
-    "swiftlint": "^2.0.0",
-    "typescript": "~4.1.5"
+    "swiftlint": "^1.0.1",
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@capacitor/core": ">=7.0.0"
+    "@capacitor/core": "^7.0.0"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
