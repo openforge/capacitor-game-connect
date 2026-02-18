@@ -146,6 +146,7 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 
 * [`signIn()`](#signin)
 * [`showLeaderboard(...)`](#showleaderboard)
+* [`showAllLeaderboards()`](#showallleaderboards)
 * [`submitScore(...)`](#submitscore)
 * [`showAchievements()`](#showachievements)
 * [`unlockAchievement(...)`](#unlockachievement)
@@ -182,6 +183,17 @@ showLeaderboard(options: { leaderboardID: string; }) => Promise<void>
 | Param         | Type                                    |
 | ------------- | --------------------------------------- |
 | **`options`** | <code>{ leaderboardID: string; }</code> |
+
+--------------------
+
+
+### showAllLeaderboards()
+
+```typescript
+showAllLeaderboards() => Promise<void>
+```
+
+* Method to display all Leaderboards
 
 --------------------
 

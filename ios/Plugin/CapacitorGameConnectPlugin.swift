@@ -20,6 +20,11 @@ public class CapacitorGameConnectPlugin: CAPPlugin {
         call.resolve()
     }
     
+    @objc func showAllLeaderboards(_ call: CAPPluginCall) {
+        implementation.showAllLeaderboards(call, (self.bridge?.viewController)!)
+        call.resolve()
+    }
+
     @objc func showAchievements(_ call: CAPPluginCall) {
         implementation.showAchievements(call, (self.bridge?.viewController)!)
         call.resolve()

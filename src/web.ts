@@ -28,6 +28,16 @@ export class CapacitorGameConnectWeb
   }
 
   /**
+   * * Method to display all Leaderboards
+   *
+   * @returns Promise
+   */
+  async showAllLeaderboards(): Promise<void> {
+    console.info('showAllLeaderboards function has been called');
+    return Promise.resolve();
+  }
+
+  /**
    * * Method to submit a score to the Google Play Services SDK
    *
    * @returns Promise

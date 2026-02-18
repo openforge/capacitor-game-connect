@@ -99,6 +99,26 @@ public class CapacitorGameConnect {
     }
 
     /**
+     * * Method to display ALL Leaderboards from Google Play Services SDK
+     *
+     * @param startActivityIntent as ActivityResultLauncher<Intent>
+     */
+    public void showAllLeaderboards(ActivityResultLauncher<Intent> startActivityIntent) {
+        Log.i(TAG, "showAllLeaderboards has been called");
+        PlayGames
+            .getLeaderboardsClient(this.activity)
+            .getAllLeaderboardsIntent()
+            .addOnSuccessListener(
+                new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityIntent.launch(intent);
+                    }
+                }
+            );
+    }
+
+    /**
      * * Method to submit a score to the Google Play Services SDK
      *
      * @param call as PluginCall

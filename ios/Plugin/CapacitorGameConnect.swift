@@ -37,6 +37,15 @@ import Capacitor
         }
     }
         
+    @objc func showAllLeaderboards(_ call: CAPPluginCall, _ viewController: UIViewController) {
+        DispatchQueue.main.async {
+            let leaderboardViewController = GKGameCenterViewController()
+            leaderboardViewController.viewState = .leaderboards
+            leaderboardViewController.gameCenterDelegate = self
+            viewController.present(leaderboardViewController, animated: true)
+        }
+    }
+
     @objc func showAchievements(_ call: CAPPluginCall, _ viewController: UIViewController) {
         guard GKLocalPlayer.local.isAuthenticated else {
             print("Player is not authenticated")
