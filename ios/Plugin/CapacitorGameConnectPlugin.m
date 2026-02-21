@@ -6,6 +6,7 @@
 CAP_PLUGIN(CapacitorGameConnectPlugin, "CapacitorGameConnect",
            CAP_PLUGIN_METHOD(signIn, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(showLeaderboard, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(showAllLeaderboards, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(showAchievements, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(submitScore, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(unlockAchievement, CAPPluginReturnPromise);
