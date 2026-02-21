@@ -1,0 +1,1 @@
+{"version":3,"file":"player-score.interface.js","sourceRoot":"","sources":["../../../src/interfaces/player-score.interface.ts"],"names":[],"mappings":"","sourcesContent":["export interface PlayerScore {\n  player_score: number;\n}\n"]}

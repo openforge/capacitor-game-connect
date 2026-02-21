@@ -12,11 +12,19 @@ public class CapacitorGameConnectPlugin: CAPPlugin {
     private let implementation = CapacitorGameConnect()
 
     @objc func signIn(_ call: CAPPluginCall) {
-        implementation.signIn(call, (self.bridge?.viewController)!)
+        guard let viewController = self.bridge?.viewController else {
+            call.reject("View controller not available")
+            return
+        }
+        implementation.signIn(call, viewController)
     }
     
     @objc func showLeaderboard(_ call: CAPPluginCall) {
-        implementation.showLeaderboard(call, (self.bridge?.viewController)!)
+        guard let viewController = self.bridge?.viewController else {
+            call.reject("View controller not available")
+            return
+        }
+        implementation.showLeaderboard(call, viewController)
         call.resolve()
     }
     
@@ -26,7 +34,11 @@ public class CapacitorGameConnectPlugin: CAPPlugin {
     }
 
     @objc func showAchievements(_ call: CAPPluginCall) {
-        implementation.showAchievements(call, (self.bridge?.viewController)!)
+        guard let viewController = self.bridge?.viewController else {
+            call.reject("View controller not available")
+            return
+        }
+        implementation.showAchievements(call, viewController)
         call.resolve()
     }
     

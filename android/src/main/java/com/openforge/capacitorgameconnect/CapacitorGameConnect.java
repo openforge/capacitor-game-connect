@@ -2,18 +2,15 @@ package com.openforge.capacitorgameconnect;
 
 import android.content.Intent;
 import android.util.Log;
+
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
-import com.google.android.gms.games.AnnotatedData;
 import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
-import com.google.android.gms.games.leaderboard.LeaderboardScore;
 import com.google.android.gms.games.leaderboard.LeaderboardVariant;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 public class CapacitorGameConnect {
 
@@ -88,14 +85,8 @@ public class CapacitorGameConnect {
         PlayGames
             .getLeaderboardsClient(this.activity)
             .getLeaderboardIntent(leaderboardID)
-            .addOnSuccessListener(
-                new OnSuccessListener<Intent>() {
-                    @Override
-                    public void onSuccess(Intent intent) {
-                        startActivityIntent.launch(intent);
-                    }
-                }
-            );
+            .addOnSuccessListener(intent -> startActivityIntent.launch(intent))
+            .addOnFailureListener(e -> Log.e(TAG, "Failed to get leaderboard intent", e));
     }
 
     /**
@@ -140,14 +131,8 @@ public class CapacitorGameConnect {
         PlayGames
             .getAchievementsClient(this.activity)
             .getAchievementsIntent()
-            .addOnSuccessListener(
-                new OnSuccessListener<Intent>() {
-                    @Override
-                    public void onSuccess(Intent intent) {
-                        startActivityIntent.launch(intent);
-                    }
-                }
-            );
+            .addOnSuccessListener(intent -> startActivityIntent.launch(intent))
+            .addOnFailureListener(e -> Log.e(TAG, "Failed to get achievements intent", e));
     }
 
     /**
@@ -182,29 +167,24 @@ public class CapacitorGameConnect {
             .getLeaderboardsClient(this.activity)
             .loadCurrentPlayerLeaderboardScore(leaderboardID, LeaderboardVariant.TIME_SPAN_ALL_TIME, LeaderboardVariant.COLLECTION_PUBLIC);
         leaderboardScore
-            .addOnSuccessListener(
-                new OnSuccessListener<AnnotatedData<LeaderboardScore>>() {
-                    @Override
-                    public void onSuccess(AnnotatedData<LeaderboardScore> leaderboardScoreAnnotatedData) {
-                        if (leaderboardScore != null) {
-                            long userTotalScore = 0;
-                            if (leaderboardScore.getResult().get() != null) {
-                                userTotalScore = leaderboardScore.getResult().get().getRawScore();
-                            }
-                            JSObject result = new JSObject();
-                            result.put("player_score", userTotalScore);
-                            call.resolve(result);
-                        }
+            .addOnSuccessListener(leaderboardScoreAnnotatedData -> {
+                if (leaderboardScoreAnnotatedData != null) {
+                    long userTotalScore = 0;
+                    if (leaderboardScoreAnnotatedData.get() != null) {
+                        userTotalScore = leaderboardScoreAnnotatedData.get().getRawScore();
                     }
+                    JSObject result = new JSObject();
+                    result.put("player_score", userTotalScore);
+                    call.resolve(result);
+                } else {
+                    JSObject result = new JSObject();
+                    result.put("player_score", 0);
+                    call.resolve(result);
                 }
-            )
-            .addOnFailureListener(
-                new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        call.reject("Error getting player score" + e.getMessage());
-                    }
-                }
-            );
+            })
+            .addOnFailureListener(e -> {
+                Log.e(TAG, "Error getting player score", e);
+                call.reject("Error getting player score: " + e.getMessage());
+            });
     }
 }

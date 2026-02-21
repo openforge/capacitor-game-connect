@@ -1,5 +1,4 @@
 # node files
-dist/
 node_modules/
 
 # iOS files
@@ -16,6 +15,14 @@ xcuserdata
 # Built application files
 *.apk
 *.ap_
+
+# IDE and Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
 
 # Files for the ART/Dalvik VM
 *.dex
