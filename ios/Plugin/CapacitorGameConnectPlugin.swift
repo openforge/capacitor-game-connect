@@ -17,32 +17,26 @@ public class CapacitorGameConnectPlugin: CAPPlugin {
     
     @objc func showLeaderboard(_ call: CAPPluginCall) {
         implementation.showLeaderboard(call, (self.bridge?.viewController)!)
-        call.resolve()
     }
     
     @objc func showAllLeaderboards(_ call: CAPPluginCall) {
         implementation.showAllLeaderboards(call, (self.bridge?.viewController)!)
-        call.resolve()
     }
 
     @objc func showAchievements(_ call: CAPPluginCall) {
         implementation.showAchievements(call, (self.bridge?.viewController)!)
-        call.resolve()
     }
     
     @objc func submitScore(_ call: CAPPluginCall) {
         implementation.submitScore(call)
-        call.resolve()
     }
     
     @objc func unlockAchievement(_ call: CAPPluginCall) {
         implementation.unlockAchievement(call)
-        call.resolve()
     }
     
     @objc func incrementAchievementProgress(_ call: CAPPluginCall) {
         implementation.incrementAchievementProgress(call)
-        call.resolve()
     }
     
     @objc func getUserTotalScore(_ call: CAPPluginCall) {

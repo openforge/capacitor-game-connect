@@ -12,6 +12,7 @@ import com.google.android.gms.games.GamesSignInClient;
 import com.google.android.gms.games.PlayGames;
 import com.google.android.gms.games.leaderboard.LeaderboardScore;
 import com.google.android.gms.games.leaderboard.LeaderboardVariant;
+import com.google.android.gms.games.signin.AuthenticationResult;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
@@ -48,8 +49,17 @@ public class CapacitorGameConnect {
                             .signIn()
                             .addOnCompleteListener(
                                 data -> {
-                                    Log.i(TAG, "Sign-in completed successful");
-                                    resultCallback.success();
+                                    if (!data.isSuccessful()) {
+                                        resultCallback.error("Sign-in failed");
+                                        return;
+                                    }
+                                    AuthenticationResult authResult = data.getResult();
+                                    if (authResult != null && authResult.isAuthenticated()) {
+                                        Log.i(TAG, "Sign-in completed successful");
+                                        resultCallback.success();
+                                    } else {
+                                        resultCallback.error("User is not authenticated");
+                                    }
                                 }
                             )
                             .addOnFailureListener(e -> resultCallback.error(e.getMessage()));
@@ -85,6 +95,10 @@ public class CapacitorGameConnect {
     public void showLeaderboard(PluginCall call, ActivityResultLauncher<Intent> startActivityIntent) {
         Log.i(TAG, "showLeaderboard has been called");
         var leaderboardID = call.getString("leaderboardID");
+        if (leaderboardID == null || leaderboardID.isBlank()) {
+            call.reject("leaderboardID is required");
+            return;
+        }
         PlayGames
             .getLeaderboardsClient(this.activity)
             .getLeaderboardIntent(leaderboardID)
@@ -93,9 +107,11 @@ public class CapacitorGameConnect {
                     @Override
                     public void onSuccess(Intent intent) {
                         startActivityIntent.launch(intent);
+                        call.resolve();
                     }
                 }
-            );
+            )
+            .addOnFailureListener(e -> call.reject("Unable to open leaderboard: " + e.getMessage()));
     }
 
     /**
@@ -103,7 +119,7 @@ public class CapacitorGameConnect {
      *
      * @param startActivityIntent as ActivityResultLauncher<Intent>
      */
-    public void showAllLeaderboards(ActivityResultLauncher<Intent> startActivityIntent) {
+    public void showAllLeaderboards(PluginCall call, ActivityResultLauncher<Intent> startActivityIntent) {
         Log.i(TAG, "showAllLeaderboards has been called");
         PlayGames
             .getLeaderboardsClient(this.activity)
@@ -113,9 +129,11 @@ public class CapacitorGameConnect {
                     @Override
                     public void onSuccess(Intent intent) {
                         startActivityIntent.launch(intent);
+                        call.resolve();
                     }
                 }
-            );
+            )
+            .addOnFailureListener(e -> call.reject("Unable to open leaderboards: " + e.getMessage()));
     }
 
     /**
@@ -135,7 +153,7 @@ public class CapacitorGameConnect {
      *
      * @param startActivityIntent as ActivityResultLauncher<Intent>
      */
-    public void showAchievements(ActivityResultLauncher<Intent> startActivityIntent) {
+    public void showAchievements(PluginCall call, ActivityResultLauncher<Intent> startActivityIntent) {
         Log.i(TAG, "showAchievements has been called");
         PlayGames
             .getAchievementsClient(this.activity)
@@ -145,9 +163,11 @@ public class CapacitorGameConnect {
                     @Override
                     public void onSuccess(Intent intent) {
                         startActivityIntent.launch(intent);
+                        call.resolve();
                     }
                 }
-            );
+            )
+            .addOnFailureListener(e -> call.reject("Unable to open achievements: " + e.getMessage()));
     }
 
     /**

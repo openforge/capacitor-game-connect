@@ -27,6 +27,10 @@ import Capacitor
     
     @objc func showLeaderboard(_ call: CAPPluginCall, _ viewController: UIViewController) {
         let leaderboardID = String(call.getString("leaderboardID") ?? "") // Property to get the leaderboard ID
+        if leaderboardID.isEmpty {
+            call.reject("leaderboardID is required")
+            return
+        }
         DispatchQueue.main.async {
             let leaderboardViewController = GKGameCenterViewController()
             leaderboardViewController.viewState = .leaderboards
@@ -34,6 +38,7 @@ import Capacitor
             leaderboardViewController.gameCenterDelegate = self
             leaderboardViewController.leaderboardTimeScope = .allTime
             viewController.present(leaderboardViewController, animated: true)
+            call.resolve()
         }
     }
         
@@ -43,6 +48,7 @@ import Capacitor
             leaderboardViewController.viewState = .leaderboards
             leaderboardViewController.gameCenterDelegate = self
             viewController.present(leaderboardViewController, animated: true)
+            call.resolve()
         }
     }
 
@@ -59,12 +65,17 @@ import Capacitor
             achievementsViewController.gameCenterDelegate = self
             achievementsViewController.viewState = .achievements
             viewController.present(achievementsViewController, animated: true)
+            call.resolve()
         }
     }
     
     @objc func submitScore(_ call: CAPPluginCall) {
         let leaderboardID = String(call.getString("leaderboardID") ?? "") // Property to get the leaderboard ID
         let score = Int64(call.getInt("totalScoreAmount") ?? 0) // Property to get the total score to submit
+        if leaderboardID.isEmpty {
+            call.reject("leaderboardID is required")
+            return
+        }
         
         guard GKLocalPlayer.local.isAuthenticated else {
             print("Player is not authenticated")
@@ -119,6 +130,10 @@ import Capacitor
         ]
         
         let achievementID = call.getString("achievementID") ?? ""
+        if achievementID.isEmpty {
+            call.reject("achievementID is required")
+            return
+        }
         let progressComplete = pointsToIncrement ?? 100.0
         
         print("[GameServices] Setting Achievement Percentage \(progressComplete)")
