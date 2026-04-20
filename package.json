@@ -1,6 +1,6 @@
 {
-  "name": "@openforge/capacitor-game-connect",
-  "version": "5.0.2",
+  "name": "capacitor-game-connect-2026",
+  "version": "6.0.0",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -13,14 +13,14 @@
     "ios/Plugin/",
     "OpenforgeCapacitorGameConnect.podspec"
   ],
-  "author": "OpenForge LLC",
+  "author": "OpenForge LLC (original), cezedarling (fork maintainer)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openforge/capacitor-game-connect.git.git"
+    "url": "git+https://github.com/cezedarling/capacitor-game-connect-2026.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-connect.git/issues"
+    "url": "https://github.com/cezedarling/capacitor-game-connect-2026/issues"
   },
   "keywords": [
     "capacitor",
@@ -28,44 +28,25 @@
     "native"
   ],
   "scripts": {
-    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
-    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify": "npm run verify:web",
     "verify:web": "npm run build",
-    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
-    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
-    "eslint": "eslint . --ext ts",
-    "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
-    "swiftlint": "node-swiftlint",
     "docgen": "docgen --api CapacitorGameConnectPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
-    "clean": "rimraf ./dist",
+    "clean": "rm -rf ./dist",
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^5.0.0",
-    "@capacitor/core": "^5.0.0",
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
     "@capacitor/docgen": "^0.0.18",
-    "@capacitor/ios": "^5.0.0",
-    "@ionic/eslint-config": "^0.3.0",
-    "@ionic/prettier-config": "^1.0.1",
-    "@ionic/swiftlint-config": "^1.1.2",
-    "eslint": "^7.11.0",
-    "prettier": "~2.3.0",
-    "prettier-plugin-java": "~1.0.2",
-    "rimraf": "^3.0.2",
+    "@capacitor/ios": "^7.4.3",
     "rollup": "^2.32.0",
-    "swiftlint": "^1.0.1",
-    "typescript": "~4.1.5"
+    "typescript": "^5.6.3"
   },
   "peerDependencies": {
-    "@capacitor/core": "^5.0.0"
-  },
-  "prettier": "@ionic/prettier-config",
-  "swiftlint": "@ionic/swiftlint-config",
-  "eslintConfig": {
-    "extends": "@ionic/eslint-config/recommended"
+    "@capacitor/core": "^7.0.0 || ^8.0.0"
   },
   "capacitor": {
     "ios": {
