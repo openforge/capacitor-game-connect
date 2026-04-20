@@ -1,5 +1,5 @@
 {
-  "name": "capacitor-game-connect-2026",
+  "name": "@cezedarling/capacitor-game-connect-2026",
   "version": "6.0.0",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
@@ -38,15 +38,26 @@
   },
   "devDependencies": {
     "@capacitor/android": "^7.4.3",
-    "@capacitor/cli": "^7.4.3",
     "@capacitor/core": "^7.4.3",
     "@capacitor/docgen": "^0.0.18",
     "@capacitor/ios": "^7.4.3",
+    "@ionic/eslint-config": "^0.3.0",
+    "@ionic/prettier-config": "^1.0.1",
+    "@ionic/swiftlint-config": "^1.1.2",
+    "eslint": "^7.11.0",
+    "prettier": "~2.3.0",
+    "prettier-plugin-java": "~1.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.32.0",
     "typescript": "^5.6.3"
   },
   "peerDependencies": {
     "@capacitor/core": "^7.0.0 || ^8.0.0"
+  },
+  "prettier": "@ionic/prettier-config",
+  "swiftlint": "@ionic/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended"
   },
   "capacitor": {
     "ios": {
