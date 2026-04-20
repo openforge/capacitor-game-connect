@@ -72,13 +72,11 @@ public class CapacitorGameConnectPlugin extends Plugin {
     @PluginMethod
     public void showLeaderboard(PluginCall call) {
         implementation.showLeaderboard(call, this.startActivityIntent);
-        call.resolve();
     }
 
     @PluginMethod
     public void showAllLeaderboards(PluginCall call) {
-        implementation.showAllLeaderboards(this.startActivityIntent);
-        call.resolve();
+        implementation.showAllLeaderboards(call, this.startActivityIntent);
     }
 
     @PluginMethod
@@ -89,8 +87,7 @@ public class CapacitorGameConnectPlugin extends Plugin {
 
     @PluginMethod
     public void showAchievements(PluginCall call) {
-        implementation.showAchievements(this.startActivityIntent);
-        call.resolve();
+        implementation.showAchievements(call, this.startActivityIntent);
     }
 
     @PluginMethod

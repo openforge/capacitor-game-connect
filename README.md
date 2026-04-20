@@ -11,8 +11,20 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 
 ---
 
+## Fork notice
+
+This repository is a **community fork** of the original OpenForge plugin.
+
+- Original project (OpenForge): `https://github.com/openforge/capacitor-game-connect`
+- This maintained fork: `https://github.com/cezedarling/capacitor-game-connect-2026`
+
+If you need **Capacitor v5** support, refer to the original OpenForge version.
+This fork is focused on **Capacitor v7/v8 migration support**, and may not work as expected on older Capacitor versions.
+
 | Capacitor Version | Support Status |
 | -----------    | :----:   |
+| Capacitor v8   | 🚧       |
+| Capacitor v7   | ✅       |
 | Capacitor v5   | ✅       |
 | Capacitor v4   | ✅       |
 | Capacitor v3   | ✅       |
@@ -25,13 +37,12 @@ Capacitor plugin for connecting and using services by Apple Game Center and Goog
 
 ## Maintainers
 
-The lovely folks at OpenForge! Feel free to tag any of the following:
+Original implementation by OpenForge. This fork is currently maintained by the community.
 
-| Maintainer | Github |
+| Role | Github |
 | ---------- | :----: |
-| Ricardo   | @Ricardo385 |
-| Paulina | @paulpauldevelops |
-| Jedi | @jedihacks |
+| Original maintainers | @Ricardo385, @paulpauldevelops, @jedihacks |
+| Fork maintainer | @cezedarling |
 
 ## Example Projects
 
@@ -45,9 +56,16 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 ## Install
 
 ```bash
-npm install @openforge/capacitor-game-connect
+# Option A: install directly from this fork
+npm install github:cezedarling/capacitor-game-connect-2026
+
+# Option B: install from a local clone/folder
+npm install ../capacitor-game-connect-2026
+
 npx cap sync
 ```
+
+> There is currently no published npm package for this fork.
 
 ## Additional Code Setup
 
@@ -139,6 +157,27 @@ Before use the `Achievement Methods` of the plugin, you need to setup your Achie
 5. Scroll down in your App Store tab from your application view and check the Game Center field
 6. Go to Services tab and configure both Leaderboards and Achievements
 7. Go back to App Store tab and select you Leaderboards and Achievements configurations
+
+## Capacitor v8 upgrade plan
+
+The plugin is now prepared for Capacitor v8 compatibility (`@capacitor/core` peer range is `^7 || ^8`) while staying stable on Capacitor v7. We recommend this rollout:
+
+1. **Platform baseline**
+   - Update your app to Capacitor v8 and run `npx cap sync`.
+   - Confirm Android Gradle Plugin/Gradle versions required by your app's Capacitor v8 template.
+   - Confirm iOS minimum deployment target and Xcode version required by Capacitor v8.
+2. **Native auth + UI smoke tests**
+   - Android: test `signIn`, `showLeaderboard`, `showAchievements` using a tester account in Google Play Console.
+   - iOS: test `signIn`, `showLeaderboard`, `showAchievements` on a real device with Game Center enabled.
+3. **Data write validation**
+   - Android: validate `submitScore`, `unlockAchievement`, and `incrementAchievementProgress` with published leaderboard/achievement IDs.
+   - iOS: validate `submitScore`, `unlockAchievement`, and `incrementAchievementProgress` with App Store Connect IDs.
+4. **Failure-path validation**
+   - Test behavior with missing IDs and unauthenticated users.
+   - Verify rejections are handled in your app UI (toast/dialog/retry flow).
+5. **Release hardening**
+   - Run full QA on debug + release builds.
+   - Publish closed-track builds on both stores before production rollout.
 
 ## API
 
