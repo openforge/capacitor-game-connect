@@ -1,5 +1,5 @@
 {
-  "name": "@openforge/capacitor-game-connect",
+  "name": "@cezedarling/capacitor-game-connect-2026",
   "version": "6.0.0",
   "description": "Use Game Services and Game Connect",
   "main": "dist/plugin.cjs.js",
@@ -13,14 +13,14 @@
     "ios/Plugin/",
     "OpenforgeCapacitorGameConnect.podspec"
   ],
-  "author": "OpenForge LLC",
+  "author": "OpenForge LLC (original), cezedarling (fork maintainer)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openforge/capacitor-game-connect.git.git"
+    "url": "git+https://github.com/cezedarling/capacitor-game-connect-2026.git"
   },
   "bugs": {
-    "url": "https://github.com/openforge/capacitor-game-connect.git/issues"
+    "url": "https://github.com/cezedarling/capacitor-game-connect-2026/issues"
   },
   "keywords": [
     "capacitor",
