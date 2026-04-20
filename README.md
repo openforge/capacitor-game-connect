@@ -60,42 +60,12 @@ Checkout these existing Ionic/Angular/Capacitor mobile game with the plugin inst
 npm install github:cezedarling/capacitor-game-connect-2026
 
 # Option B: install from a local clone/folder
-# (run this from your app folder)
 npm install ../capacitor-game-connect-2026
 
 npx cap sync
 ```
 
 > There is currently no published npm package for this fork.
-
-### Local install troubleshooting (ENOENT/package.json)
-
-If you see an error like:
-
-```bash
-ENOENT: no such file or directory, open '/capacitor-game-connect-2026-main/package.json'
-```
-
-it means npm looked for an **absolute root path** (`/capacitor-game-connect-2026-main`) that does not exist.
-
-Use one of these instead:
-
-```bash
-# Relative path (recommended), from your app root:
-npm install ../capacitor-game-connect-2026-main
-
-# or from the same directory where both folders exist:
-npm install ./capacitor-game-connect-2026-main
-
-# or an explicit absolute path that really exists on your machine:
-npm install /Users/<your-user>/Sites/capacitor-game-connect-2026-main
-```
-
-Then run:
-
-```bash
-npx cap sync
-```
 
 ## Additional Code Setup
 
