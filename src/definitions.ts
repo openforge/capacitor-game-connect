@@ -1,5 +1,16 @@
 import type { PlayerScore } from './interfaces/player-score.interface';
 
+export type LeaderboardTimeSpan = 'all_time' | 'weekly' | 'daily';
+
+export interface GetUserTotalScoreOptions {
+  leaderboardID: string;
+  /**
+   * Time span to load from Google Play Games leaderboard scores.
+   * Defaults to `all_time`.
+   */
+  timeSpan?: LeaderboardTimeSpan;
+}
+
 export interface CapacitorGameConnectPlugin {
   /**
    * * Method to sign-in a user
@@ -56,7 +67,7 @@ export interface CapacitorGameConnectPlugin {
   /**
    * * Method to get total player score from a leaderboard
    *
-   * @param options { leaderboardID: string }
+   * @param options { leaderboardID: string; timeSpan?: 'all_time' | 'weekly' | 'daily' }
    */
-  getUserTotalScore(options: { leaderboardID: string }): Promise<PlayerScore>;
+  getUserTotalScore(options: GetUserTotalScoreOptions): Promise<PlayerScore>;
 }

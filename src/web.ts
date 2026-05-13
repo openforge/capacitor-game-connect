@@ -1,6 +1,9 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { CapacitorGameConnectPlugin } from './definitions';
+import type {
+  CapacitorGameConnectPlugin,
+  GetUserTotalScoreOptions,
+} from './definitions';
 import type { PlayerScore } from './interfaces/player-score.interface';
 import type { User } from './interfaces/user.interface';
 
@@ -88,12 +91,12 @@ export class CapacitorGameConnectWeb
   /**
    * * Function to get the total player score from a specific leaderboard
    *
-   * @param options { leaderboardID: string }
+   * @param options { leaderboardID: string; timeSpan?: 'all_time' | 'weekly' | 'daily' }
    * @returns Promise<PlayerScore>
    */
-  async getUserTotalScore(options: {
-    leaderboardID: string;
-  }): Promise<PlayerScore> {
+  async getUserTotalScore(
+    options: GetUserTotalScoreOptions,
+  ): Promise<PlayerScore> {
     console.info('getUserTotalScore function has been called', options);
     return Promise.resolve({} as PlayerScore);
   }

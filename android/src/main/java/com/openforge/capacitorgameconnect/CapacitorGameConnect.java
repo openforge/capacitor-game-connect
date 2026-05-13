@@ -198,23 +198,27 @@ public class CapacitorGameConnect {
     public void getUserTotalScore(PluginCall call) {
         Log.i(TAG, "getUserTotalScore has been called");
         var leaderboardID = call.getString("leaderboardID");
+        if (leaderboardID == null || leaderboardID.isBlank()) {
+            call.reject("leaderboardID is required");
+            return;
+        }
+
+        int timeSpan = getLeaderboardTimeSpan(call.getString("timeSpan"));
         var leaderboardScore = PlayGames
             .getLeaderboardsClient(this.activity)
-            .loadCurrentPlayerLeaderboardScore(leaderboardID, LeaderboardVariant.TIME_SPAN_ALL_TIME, LeaderboardVariant.COLLECTION_PUBLIC);
+            .loadCurrentPlayerLeaderboardScore(leaderboardID, timeSpan, LeaderboardVariant.COLLECTION_PUBLIC);
         leaderboardScore
             .addOnSuccessListener(
                 new OnSuccessListener<AnnotatedData<LeaderboardScore>>() {
                     @Override
                     public void onSuccess(AnnotatedData<LeaderboardScore> leaderboardScoreAnnotatedData) {
-                        if (leaderboardScore != null) {
-                            long userTotalScore = 0;
-                            if (leaderboardScore.getResult().get() != null) {
-                                userTotalScore = leaderboardScore.getResult().get().getRawScore();
-                            }
-                            JSObject result = new JSObject();
-                            result.put("player_score", userTotalScore);
-                            call.resolve(result);
+                        long userTotalScore = 0;
+                        if (leaderboardScoreAnnotatedData.get() != null) {
+                            userTotalScore = leaderboardScoreAnnotatedData.get().getRawScore();
                         }
+                        JSObject result = new JSObject();
+                        result.put("player_score", userTotalScore);
+                        call.resolve(result);
                     }
                 }
             )
@@ -222,9 +226,25 @@ public class CapacitorGameConnect {
                 new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        call.reject("Error getting player score" + e.getMessage());
+                        call.reject("Error getting player score: " + e.getMessage());
                     }
                 }
             );
+    }
+
+    private int getLeaderboardTimeSpan(String timeSpan) {
+        if (timeSpan == null) {
+            return LeaderboardVariant.TIME_SPAN_ALL_TIME;
+        }
+
+        switch (timeSpan) {
+            case "daily":
+                return LeaderboardVariant.TIME_SPAN_DAILY;
+            case "weekly":
+                return LeaderboardVariant.TIME_SPAN_WEEKLY;
+            case "all_time":
+            default:
+                return LeaderboardVariant.TIME_SPAN_ALL_TIME;
+        }
     }
 }

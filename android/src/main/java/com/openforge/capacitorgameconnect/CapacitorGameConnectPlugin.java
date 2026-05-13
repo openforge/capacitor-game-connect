@@ -2,8 +2,6 @@ package com.openforge.capacitorgameconnect;
 
 import android.content.Intent;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
@@ -25,16 +23,13 @@ public class CapacitorGameConnectPlugin extends Plugin {
     public void load() {
         PlayGamesSdk.initialize(getContext());
         startActivityIntent =
-                getActivity()
-                        .registerForActivityResult(
-                                new ActivityResultContracts.StartActivityForResult(),
-                                new ActivityResultCallback<ActivityResult>() {
-                                    @Override
-                                    public void onActivityResult(ActivityResult result) {
-                                        // Add same code that you want to add in onActivityResult method
-                                    }
-                                }
-                        );
+            getActivity()
+                .registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        // No-op: launcher is only used to display Play Games UI intents.
+                    }
+                );
         implementation = new CapacitorGameConnect(getActivity());
     }
 
