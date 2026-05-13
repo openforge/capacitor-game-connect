@@ -93,6 +93,39 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+## Play Games Services v2 sign-in
+
+This fork uses the Play Games Services v2 sign-in APIs on Android. The plugin initializes the Play Games SDK, checks `GamesSignInClient.isAuthenticated()`, and only calls `GamesSignInClient.signIn()` when the current player is not already authenticated. The Android dependency is pinned to `com.google.android.gms:play-services-games-v2:20.1.2` so apps use the v2 SDK instead of the deprecated `GoogleSignIn` flow.
+
+## Phaser/WebView bootstrap pattern
+
+When using Phaser inside a Capacitor WebView, sign in before creating your first Phaser game or scene. This keeps scene code from racing native sign-in UI and gives the game registry a stable service status.
+
+```ts
+import { Capacitor } from '@capacitor/core';
+import { CapacitorGameConnect } from '@cezedarling/capacitor-game-connect-2026';
+
+async function initGameServices() {
+  if (Capacitor.isNativePlatform()) {
+    try {
+      const result = await CapacitorGameConnect.signIn();
+      console.log('Signed in as:', result.player_name);
+      return true;
+    } catch (error) {
+      console.warn('Play Games sign-in failed, continuing offline', error);
+      return false;
+    }
+  }
+
+  return false;
+}
+
+initGameServices().then(isSignedIn => {
+  const game = new Phaser.Game(config);
+  game.registry.set('gameServicesActive', isSignedIn);
+});
+```
+
 ## Setup for Android
 
 Follow this guide to configure correctly your Google Play Console to be able to use the Capacitor Game Connect plugin:
@@ -296,14 +329,14 @@ incrementAchievementProgress(options: { achievementID: string; pointsToIncrement
 ### getUserTotalScore(...)
 
 ```typescript
-getUserTotalScore(options: { leaderboardID: string; }) => Promise<PlayerScore>
+getUserTotalScore(options: GetUserTotalScoreOptions) => Promise<PlayerScore>
 ```
 
 * Method to get total player score from a leaderboard
 
 | Param         | Type                                    | Description |
 | ------------- | --------------------------------------- | ----------- |
-| **`options`** | <code>{ leaderboardID: string; }</code> | : string }  |
+| **`options`** | <code><a href="#getusertotalscoreoptions">GetUserTotalScoreOptions</a></code> | `{ leaderboardID: string; timeSpan?: 'all_time' | 'weekly' | 'daily' }`. Defaults to `all_time`. |
 
 **Returns:** <code>Promise&lt;<a href="#playerscore">PlayerScore</a>&gt;</code>
 
@@ -318,6 +351,22 @@ getUserTotalScore(options: { leaderboardID: string; }) => Promise<PlayerScore>
 | Prop               | Type                |
 | ------------------ | ------------------- |
 | **`player_score`** | <code>number</code> |
+
+
+#### GetUserTotalScoreOptions
+
+| Prop                | Type                                                        | Description |
+| ------------------- | ----------------------------------------------------------- | ----------- |
+| **`leaderboardID`** | <code>string</code>                                         | Leaderboard identifier. |
+| **`timeSpan`**      | <code><a href="#leaderboardtimespan">LeaderboardTimeSpan</a></code> | Optional Android leaderboard score time span. Defaults to <code>all_time</code>. |
+
+
+### Type Aliases
+
+
+#### LeaderboardTimeSpan
+
+<code>'all_time' | 'weekly' | 'daily'</code>
 
 </docgen-api>
 
